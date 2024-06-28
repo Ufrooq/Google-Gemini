@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .icon_btn {
+    @apply flex justify-center items-center w-8 h-8 rounded-[50%] p-5 bg-slate-200 mt-8 hover:bg-slate-300 hover:scale-110 transition;
+  }
+
+  .custom_ani {
+    @apply transition-all duration-200;
+  }
+}
