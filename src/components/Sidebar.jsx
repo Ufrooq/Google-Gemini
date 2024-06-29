@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
+let _limit = 5;
 const Sidebar = () => {
   const [expanded, setexpanded] = useState(false);
-
+  const [showmore, setshowmore] = useState(false);
   const words = [
     "happy",
     "sad",
@@ -22,18 +23,26 @@ const Sidebar = () => {
     "movie",
     "movie",
   ];
+
+  const handleDropdown = () => {
+    _limit = words.length;
+    setshowmore(!showmore);
+  };
+
   return (
     <div
-      className={`bg-slate-100 py-4 flex flex-col items-start justify-between h-[100vh] custom_ani ${
+      className={`bg-slate-100 py-4 flex flex-col items-start justify-between h-[100vh] ${
         expanded ? "w-[280px] pl-4 " : "w-[70px]"
       }`}
     >
       <div
-        className={`flex flex-col ${expanded ? "items-start" : "items-center"}`}
+        className={`flex flex-col w-full ${
+          expanded ? "items-start" : "items-center"
+        }`}
       >
         <button
           onClick={() => setexpanded(!expanded)}
-          className="icon_btn bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-8"
+          className="icon_btn bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-6"
         >
           <i className="fa-solid fa-bars" style={{ fontSize: "1.3rem" }}></i>
         </button>
@@ -47,25 +56,32 @@ const Sidebar = () => {
           <i class="fa-solid fa-plus" style={{ fontSize: "1.2rem" }}></i>
           <span className={`${expanded ? "block" : "hidden"}`}>New Chat</span>
         </button>
-        <div
-          className={`${
-            expanded ? "block" : "hidden"
-          } custom_ani duration-1000`}
+      </div>
+      <div className={`${expanded ? "block" : "hidden"} w-full `}>
+        <p className="pl-3 pb-6">Recent</p>
+        <ul
+          className={`w-full h-[30vh] ${showmore ? "overflow-y-scroll" : ""}`}
         >
-          <p>Recent</p>
-          <ul className="w-[280px] h-[50vh] relative overflow-y-scroll">
-            {words?.map((word) => (
-              <li className="w-full flex items-center gap-4 px-5 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100">
-                <i
-                  // class="fa-regular fa-message"
-                  class="fa-regular fa-note-sticky"
-                  style={{ fontSize: "1rem" }}
-                ></i>
-                {word}
-              </li>
-            ))}
-          </ul>
-        </div>
+          {words?.slice(0, _limit).map((word, key) => (
+            <li
+              key={key}
+              className="w-full flex items-center gap-4 px-4 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100"
+            >
+              <i
+                // class="fa-regular fa-message"
+                class="fa-regular fa-note-sticky"
+                style={{ fontSize: "1rem" }}
+              ></i>
+              {word}
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={handleDropdown}
+          className="w-full text-sm flex gap-4 items-center px-4 py-2 rounded-[20px] cursor-pointer hover:bg-slate-200 "
+        >
+          <i class="fa-solid fa-angle-down"></i>Show more
+        </button>
       </div>
       <div
         className={`flex flex-col w-full ${
