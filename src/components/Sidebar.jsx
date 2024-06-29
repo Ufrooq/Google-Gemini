@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-slate-100 py-4 flex flex-col items-center justify-between h-[100vh] ${
+      className={`bg-slate-100 py-4 flex flex-col items-center justify-between sticky bottom-0 h-[100vh] ${
         expanded ? "w-[280px] pl-4 " : "w-[70px]"
       }`}
     >
@@ -92,7 +92,7 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-      <div className={`flex flex-col justify-start w-full`}>
+      <div className={`flex flex-col justify-start w-full me-4`}>
         <button
           className={`${
             expanded ? "rounded-[20px]" : ""
