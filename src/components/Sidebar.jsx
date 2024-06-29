@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-slate-100 py-4 flex flex-col items-start justify-between h-[100vh] ${
+      className={`bg-slate-100 py-4 flex flex-col items-center justify-between h-[100vh] ${
         expanded ? "w-[280px] pl-4 " : "w-[70px]"
       }`}
     >
@@ -56,43 +56,48 @@ const Sidebar = () => {
           <i class="fa-solid fa-plus" style={{ fontSize: "1.2rem" }}></i>
           <span className={`${expanded ? "block" : "hidden"}`}>New Chat</span>
         </button>
+        <div className={`${expanded ? "block" : "hidden"} w-full mt-6 `}>
+          <p className="pl-3 pb-6">Recent</p>
+          <ul
+            className={`w-full h-[30vh] ${
+              showmore ? "overflow-y-scroll" : "overflow-hidden"
+            }`}
+          >
+            {words?.slice(0, _limit).map((word, key) => (
+              <li
+                key={key}
+                className="w-full flex items-center gap-4 px-4 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100"
+              >
+                <i
+                  // class="fa-regular fa-message"
+                  class="fa-regular fa-note-sticky"
+                  style={{ fontSize: "1rem" }}
+                ></i>
+                {word}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={handleDropdown}
+            className="w-full text-sm flex gap-4 items-center px-4 py-2 rounded-[20px] cursor-pointer hover:bg-slate-200 "
+          >
+            <i
+              class={`fa-solid fa-angle-down ${
+                showmore ? "rotate-180" : "rotate-0"
+              }`}
+            ></i>
+            Show {showmore ? "less" : "more"}
+          </button>
+        </div>
       </div>
-      <div className={`${expanded ? "block" : "hidden"} w-full `}>
-        <p className="pl-3 pb-6">Recent</p>
-        <ul
-          className={`w-full h-[30vh] ${showmore ? "overflow-y-scroll" : ""}`}
-        >
-          {words?.slice(0, _limit).map((word, key) => (
-            <li
-              key={key}
-              className="w-full flex items-center gap-4 px-4 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100"
-            >
-              <i
-                // class="fa-regular fa-message"
-                class="fa-regular fa-note-sticky"
-                style={{ fontSize: "1rem" }}
-              ></i>
-              {word}
-            </li>
-          ))}
-        </ul>
-        <button
-          onClick={handleDropdown}
-          className="w-full text-sm flex gap-4 items-center px-4 py-2 rounded-[20px] cursor-pointer hover:bg-slate-200 "
-        >
-          <i class="fa-solid fa-angle-down"></i>Show more
+      <div className={`flex flex-col justify-start w-full`}>
+        <button className="icon_btn justify-start w-full gap-4 bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5">
+          <i class="fa-solid fa-circle-info" style={{ fontSize: "1.2rem" }}></i>
+          {expanded ? "Help" : ""}
         </button>
-      </div>
-      <div
-        className={`flex flex-col w-full ${
-          expanded ? "items-start" : "items-center"
-        }`}
-      >
-        <button className="icon_btn bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5">
-          <i class="fa-solid fa-circle-info" style={{ fontSize: "1.1rem" }}></i>
-        </button>
-        <button className="icon_btn bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5">
-          <i class="fa-solid fa-gear" style={{ fontSize: "1.1rem" }}></i>
+        <button className="icon_btn justify-start w-full gap-4  bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5">
+          <i class="fa-solid fa-gear" style={{ fontSize: "1.2rem" }}></i>
+          {expanded ? "Settings" : ""}
         </button>
       </div>
     </div>
