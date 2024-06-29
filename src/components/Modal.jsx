@@ -2,7 +2,7 @@ import React from "react";
 
 const Modal = () => {
   return (
-    <div className="w-[300px] h-[110px] py-2 flex flex-col bg-slate-200 absolute top-12 left-8 rounded-[10px] shadow-lg">
+    <div className="transition w-[320px] h-[110px] py-2 flex flex-col bg-slate-200 absolute top-14 left-8 rounded-[10px] shadow-lg">
       <div className="group flex h-full px-3 gap-2 items-center justify-between cursor-pointer transition hover:bg-slate-300">
         <div className="flex items-center gap-4">
           <img
@@ -13,6 +13,7 @@ const Modal = () => {
           />
           <span className="text-md">Gemini</span>
         </div>
+        <i className="fa-regular fa-circle-check mr-6 text-xl"></i>
       </div>
       <div className="group flex h-full px-3 gap-2 items-center justify-between cursor-pointer transition hover:bg-slate-300">
         <div className="flex items-center gap-4">

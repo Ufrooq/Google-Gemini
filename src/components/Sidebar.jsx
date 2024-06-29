@@ -49,17 +49,19 @@ const Sidebar = () => {
         <button
           className={`${
             expanded
-              ? "icon_btn px-4 flex justify-between w-32 rounded-[20px] bg-slate-200"
+              ? "icon_btn  gap-2 px-4 flex justify-between w-36 rounded-[20px] bg-slate-200"
               : "icon_btn"
           }`}
         >
           <i class="fa-solid fa-plus" style={{ fontSize: "1.2rem" }}></i>
-          <span className={`${expanded ? "block" : "hidden"}`}>New Chat</span>
+          <span className={`font-base ${expanded ? "block" : "hidden"}`}>
+            New Chat
+          </span>
         </button>
         <div className={`${expanded ? "block" : "hidden"} w-full mt-6 `}>
           <p className="pl-3 pb-6">Recent</p>
           <ul
-            className={`w-full h-[30vh] ${
+            className={`w-full h-[30vh] pr-2 ${
               showmore ? "overflow-y-scroll" : "overflow-hidden"
             }`}
           >
@@ -91,11 +93,19 @@ const Sidebar = () => {
         </div>
       </div>
       <div className={`flex flex-col justify-start w-full`}>
-        <button className="icon_btn justify-start w-full gap-4 bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5">
+        <button
+          className={`${
+            expanded ? "rounded-[20px]" : ""
+          } icon_btn justify-start w-full gap-4 bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5`}
+        >
           <i class="fa-solid fa-circle-info" style={{ fontSize: "1.2rem" }}></i>
           {expanded ? "Help" : ""}
         </button>
-        <button className="icon_btn justify-start w-full gap-4  bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5">
+        <button
+          className={`${
+            expanded ? "rounded-[20px]" : ""
+          } icon_btn justify-start w-full gap-4 bg-transparent mt-0 hover:scale-100 hover:bg-slate-200 p-5`}
+        >
           <i class="fa-solid fa-gear" style={{ fontSize: "1.2rem" }}></i>
           {expanded ? "Settings" : ""}
         </button>
