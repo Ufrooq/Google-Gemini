@@ -52,7 +52,35 @@ const MainBox = () => {
             )}
           </>
         ) : (
-          <div className="w-full">okokokokok</div>
+          <div className="w-full mt-5">
+            <div className="flex items-start gap-6">
+              <i class="fa-regular fa-circle-user text-3xl mt-1"></i>
+              {/* <p className="leading-7 text-s  m">What is DSA?</p> */}
+              <div className="w-full flex flex-col gap-4">
+                <input
+                  className="w-full border-2 border-blue-600 outline-blue-600 bg-blue-50 text-sm px-4 py-4 rounded-[6px]"
+                  type="text"
+                  name=""
+                  id=""
+                  value={"What is DSA?"}
+                />
+                <div className="flex items-center gap-2">
+                  <button className="px-4 py-2 rounded-[20px] text-blue-700 hover:bg-slate-100 transition">
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => setshow(false)}
+                    className="px-4 py-2 rounded-[20px] text-white bg-blue-500 hover:opacity-90 transition"
+                  >
+                    Update
+                  </button>
+                </div>
+              </div>
+              {/* <button className="w-9 h-8 mt-1 rounded-[50%] flex justify-center items-center bg-slate-200">
+                <i class="fa-regular fa-pen-to-square text-sm"></i>
+              </button> */}
+            </div>
+          </div>
         )}
       </div>
     </div>
