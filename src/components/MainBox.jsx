@@ -1,5 +1,4 @@
 import React from "react";
-import InputBar from "./InputBar";
 
 const MainBox = () => {
   const quick_links = [
@@ -10,17 +9,17 @@ const MainBox = () => {
   ];
 
   return (
-    <div className="p-5 w-full h-full">
-      <div className="w-[60%] mx-auto mt-8">
-        <h1 className="font-semibold text-5xl">
+    <div className="p-5 w-full max-h-[90vh] relative overflow-y-scroll">
+      <div className="w-[60%] h-full mx-auto">
+        <h1 className="font-semibold text-6xl pt-10">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-pink-500">
             Hello, Umar!
           </span>
         </h1>
-        <h1 className="mt-4 font-semibold text-5xl text-gray-300">
+        <h1 className="mt-4 font-semibold text-6xl text-gray-300">
           How can I help you today ?
         </h1>
-        <div className="w-full gap-3 flex mt-12">
+        <div className="w-full gap-3 flex mt-20">
           {quick_links.map((link) => (
             <div className="w-full flex h-[200px] flex-col justify-between flex-grow-1 cursor-pointer rounded-[10px] p-5 bg-slate-100 hover:bg-slate-200 transition shadow-sm">
               <p className="text-[0.9rem]">{link[1]}</p>
@@ -30,7 +29,7 @@ const MainBox = () => {
             </div>
           ))}
         </div>
-        <div className="mt-8 flex flex-col rounded-[10px] p-4 justify-between gap-10 bg-gray-100">
+        <div className="mt-8 mb-32 flex flex-col rounded-[10px] p-4 justify-between gap-10 bg-gray-100">
           <p className="text-[0.9rem] leading-6">
             Humans review some saved chats to improve Google AI. To stop this
             for future chats, turn off Gemini Apps Activity. If this setting is
@@ -46,7 +45,6 @@ const MainBox = () => {
             </button>
           </div>
         </div>
-        <InputBar />
       </div>
     </div>
   );

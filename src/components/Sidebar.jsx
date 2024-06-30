@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-slate-100 py-4 flex flex-col items-center justify-between sticky bottom-0 h-[100vh] ${
+      className={`z-20 min-h-[100vh] bg-slate-100 py-4 flex flex-col items-center justify-between ${
         expanded ? "w-[280px] pl-4 " : "w-[70px]"
       }`}
     >

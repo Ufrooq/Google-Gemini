@@ -4,7 +4,7 @@ import Modal from "./Modal";
 const Navbar = () => {
   const [showModal, setshowModal] = useState(false);
   return (
-    <div className="w-full flex justify-between items-center px-6 py-2 mt-4 relative">
+    <div className="w-full z-10 flex justify-between items-center px-6 py-2 mt-4 relative">
       <div className="flex gap-2 items-center rounded-[6px] px-3 py-1 hover:bg-slate-200 cursor-pointer">
         <span
           className="text-xl text-slate-800"
