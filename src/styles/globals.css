@@ -10,4 +10,8 @@
   .custom_ani {
     @apply transition-all duration-200;
   }
+
+  .input_btn {
+    @apply w-12 h-12 rounded-[50%] flex items-center justify-center hover:bg-slate-200 transition;
+  }
 }

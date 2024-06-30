@@ -6,9 +6,9 @@ import MainBox from "./components/MainBox";
 import InputBar from "./components/InputBar";
 function App() {
   return (
-    <div className="flex gap-2">
+    <div className="w-full flex gap-2">
       <Sidebar />
-      <div>
+      <div className="w-full">
         <Navbar />
         <MainBox />
         <InputBar />
