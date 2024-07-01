@@ -10,6 +10,7 @@ const ContextProvider = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const [responseData, setresponseData] = useState("");
   const [showResult, setshowResult] = useState(false);
+  const [showEditBox, setshowEditBox] = useState(false);
   const [show, setshow] = useState(true);
   const quick_links = [
     ["pencil", "Revise my writing and fix my grammar"],
@@ -19,8 +20,11 @@ const ContextProvider = (props) => {
   ];
 
   const onSent = async (prompt) => {
+    setrecentPrompt(prompt);
+    setisLoading(true);
+    showResult(true);
     const response = await runChat(prompt);
-    return response;
+    setresponseData(response);
   };
   const contextValue = {
     //states
@@ -36,6 +40,8 @@ const ContextProvider = (props) => {
     showResult,
     quick_links,
     show,
+    showEditBox,
+    setshowEditBox,
 
     //functions
     onSent,

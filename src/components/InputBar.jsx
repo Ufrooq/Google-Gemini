@@ -2,15 +2,11 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 const InputBar = () => {
-  const { onSent } = useContext(GlobalContext);
-  const [prompt, setprompt] = useState("");
+  const { onSent, prompt, setprompt } = useContext(GlobalContext);
 
   const handleSendPrompt = async (e) => {
-    // console.log(onSent(prompt));
     e.preventDefault();
-    const response = await onSent(prompt);
-    console.log(response);
-
+    await onSent(prompt);
     setprompt("");
   };
 
