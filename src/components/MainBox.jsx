@@ -13,6 +13,7 @@ const MainBox = () => {
     prompt,
     responseData,
     recentPrompt,
+    isLoading,
   } = useContext(GlobalContext);
 
   const handleUpdate = () => {
@@ -112,66 +113,10 @@ const MainBox = () => {
                 src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg"
                 alt=""
               />
-
-              {/* <p className="text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-                  dolores odit sunt est debitis voluptas, placeat quo, nam
-                  eligendi dolorem iste magnam error omnis, autem ipsa. Unde
-                  quibusdam magnam nisi quis fugiat explicabo illum veritatis
-                  magni officiis dolore, eveniet quia eaque? Eveniet aliquid
-                  assumenda reiciendis fugiat qui maxime, dolorum cupiditate
-                  dignissimos recusandae accusamus rem maiores veritatis
-                  obcaecati iste amet voluptatibus quo. Tenetur placeat quam,
-                  quidem saepe atque eaque eligendi accusamus id asperiores
-                  reiciendis doloribus ad repellendus! Voluptatum, nostrum
-                  molestias unde molestiae excepturi optio dolorum, similique
-                  eius cupiditate aliquid voluptas expedita suscipit cum veniam
-                  vel temporibus laboriosam nesciunt? Non ut veniam esse facere
-                  animi, architecto aspernatur repellat, asperiores eos nemo
-                  consequuntur ab quos aliquam alias quo illo placeat
-                  laboriosam? Aliquam explicabo repellat repellendus ut error
-                  mollitia molestiae sed amet labore unde. Corrupti
-                  consequuntur, accusantium vero obcaecati iusto quidem laborum
-                  esse eius perferendis quasi exercitationem fugiat minus sunt
-                  quod optio natus asperiores nesciunt nisi! Voluptate
-                  exercitationem quasi rem. Magni, maiores incidunt? Quae
-                  inventore dolorem quos asperiores nulla, accusamus fugiat
-                  tempore vero? Laboriosam magnam minus aliquid neque, modi illo
-                  corrupti, sequi quidem facilis nam adipisci ab accusantium
-                  excepturi quis aperiam molestias quos ea temporibus atque quam
-                  fugiat at ipsam. Non corporis amet sit tempora eaque
-                  consectetur accusamus accusantium eius libero, odit alias!
-                  Iure, unde dignissimos. Consequuntur suscipit vitae doloremque
-                  aliquid dicta. Et consectetur explicabo voluptatem voluptate
-                  vero est enim in. Ratione suscipit veritatis vero provident
-                  reprehenderit saepe. Dolore, voluptatibus. Corporis iure
-                  eligendi dicta veritatis magnam? Libero, quis nihil dolorem
-                  iure blanditiis non enim doloremque? Voluptate veniam
-                  assumenda cumque consectetur quo quod eos quisquam accusamus
-                  porro officiis id totam magnam architecto similique laborum
-                  eius amet, quae eveniet tempora corporis doloremque sed?
-                  Incidunt, corrupti unde. Officia magnam odio dolore, ut
-                  repellendus voluptates quasi nostrum libero impedit recusandae
-                  corporis iure quisquam neque consectetur beatae assumenda
-                  nulla illo natus minima! Maxime tempora similique, labore
-                  eaque dolorum, tempore accusamus impedit neque aliquid dolor
-                  asperiores nulla, ea omnis odit repellendus unde! Aperiam
-                  consectetur labore veniam architecto cumque rem eum sapiente
-                  distinctio expedita incidunt, nihil ullam recusandae molestiae
-                  dignissimos amet voluptatem temporibus officia beatae iusto.
-                  Beatae, saepe accusantium? Doloremque sunt, repellat officiis
-                  autem, saepe recusandae debitis, hic dicta mollitia voluptatem
-                  excepturi perferendis quis accusamus. Itaque obcaecati
-                  consequatur asperiores, alias nostrum cum ex facilis
-                  perspiciatis neque aperiam, accusamus eos temporibus. Nisi
-                  qui, dignissimos illum pariatur quis suscipit nobis magni!
-                  Dicta voluptatum odit facere placeat ipsam minima iure
-                  consequuntur molestias labore. Quo?
-                </p> */}
-              {responseData ? (
+              {!isLoading ? (
                 <div className="p-4 bg-slate-100 rounded-[10px] w-full">
                   <p
-                    className="text-justify"
+                    className="text-justify leading-7"
                     dangerouslySetInnerHTML={{ __html: responseData }}
                   ></p>
                 </div>
