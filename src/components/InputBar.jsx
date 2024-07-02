@@ -7,7 +7,6 @@ const InputBar = () => {
   const handleSendPrompt = async (e) => {
     e.preventDefault();
     await onSent(prompt);
-    setprompt("");
   };
 
   return (

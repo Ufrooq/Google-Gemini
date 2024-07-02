@@ -22,7 +22,8 @@ const ContextProvider = (props) => {
   const onSent = async (prompt) => {
     setrecentPrompt(prompt);
     setisLoading(true);
-    showResult(true);
+    setshowResult(true);
+    setprompt("");
     const response = await runChat(prompt);
     setresponseData(response);
   };
@@ -40,6 +41,7 @@ const ContextProvider = (props) => {
     showResult,
     quick_links,
     show,
+    setshow,
     showEditBox,
     setshowEditBox,
 

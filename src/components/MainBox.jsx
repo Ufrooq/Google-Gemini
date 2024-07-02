@@ -1,9 +1,19 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import Loader from "./Loader";
 
 const MainBox = () => {
-  const { show, showResult, quick_links, showEditBox, setshowEditBox } =
-    useContext(GlobalContext);
+  const {
+    show,
+    setshow,
+    showResult,
+    quick_links,
+    showEditBox,
+    setshowEditBox,
+    prompt,
+    responseData,
+    recentPrompt,
+  } = useContext(GlobalContext);
 
   const handleUpdate = () => {
     setshowEditBox(true);
@@ -11,7 +21,7 @@ const MainBox = () => {
   return (
     <div className="p-5 w-full max-h-[90vh] relative overflow-y-scroll">
       <div className="w-[60%] h-full mx-auto">
-        {showResult ? (
+        {!showResult ? (
           <>
             <h1 className="font-semibold text-6xl pt-10">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-pink-500">
@@ -63,7 +73,7 @@ const MainBox = () => {
             >
               <i class="fa-regular fa-circle-user text-3xl mt-1"></i>
               {!showEditBox ? (
-                <p className="leading-7 text-sm">What is DSA?</p>
+                <p className="leading-7 text-sm">{recentPrompt}</p>
               ) : (
                 <div className="w-full flex flex-col gap-4">
                   <input
@@ -102,8 +112,8 @@ const MainBox = () => {
                 src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg"
                 alt=""
               />
-              <div>
-                <p className="text-justify">
+
+              {/* <p className="text-justify">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
                   dolores odit sunt est debitis voluptas, placeat quo, nam
                   eligendi dolorem iste magnam error omnis, autem ipsa. Unde
@@ -157,8 +167,17 @@ const MainBox = () => {
                   qui, dignissimos illum pariatur quis suscipit nobis magni!
                   Dicta voluptatum odit facere placeat ipsam minima iure
                   consequuntur molestias labore. Quo?
-                </p>
-              </div>
+                </p> */}
+              {responseData ? (
+                <div className="p-4 bg-slate-100 rounded-[10px] w-full">
+                  <p
+                    className="text-justify"
+                    dangerouslySetInnerHTML={{ __html: responseData }}
+                  ></p>
+                </div>
+              ) : (
+                <Loader />
+              )}
             </div>
           </div>
         )}

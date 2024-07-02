@@ -14,4 +14,7 @@
   .input_btn {
     @apply w-12 h-12 rounded-[50%] flex items-center justify-center hover:bg-slate-200 transition;
   }
+  .loader_hr {
+    @apply animate-pulse  w-full rounded-[4px] h-[16px] border-none bg-[#f6f7f8] bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300;
+  }
 }
