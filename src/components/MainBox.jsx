@@ -15,6 +15,9 @@ const MainBox = () => {
     responseData,
     recentPrompt,
     isLoading,
+    copied,
+    setcopied,
+    copyToClipboard,
   } = useContext(GlobalContext);
 
   const handleUpdate = () => {
@@ -115,8 +118,20 @@ const MainBox = () => {
                 alt=""
               />
               {!isLoading ? (
-                <div className="p-4 bg-slate-100 rounded-[10px] w-full">
-                  <ReactTyped strings={[responseData]} typeSpeed={10} />
+                <div className="p-4 bg-slate-100 rounded-[10px] w-full flex flex-col">
+                  <p className="text-justify leading-7">
+                    <ReactTyped strings={[responseData]} typeSpeed={10} />
+                  </p>
+                  <button
+                    className="mt-4 ml-auto mr-2"
+                    onClick={() => copyToClipboard(responseData)}
+                  >
+                    {copied ? (
+                      <i class="fa-solid fa-check text-xl"></i>
+                    ) : (
+                      <i class="fa-solid fa-copy text-xl"></i>
+                    )}
+                  </button>
                 </div>
               ) : (
                 <Loader />

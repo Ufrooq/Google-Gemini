@@ -1,5 +1,6 @@
 import runChat from "../config/gemini";
 import { createContext, useState } from "react";
+import { quick_links } from "../constants/quickLinks";
 
 export const GlobalContext = createContext();
 
@@ -9,18 +10,10 @@ const ContextProvider = (props) => {
   const [prevPrompts, setprevPrompts] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [responseData, setresponseData] = useState("");
-  const [sanitizedData, setSanitizedData] = useState("");
   const [showResult, setshowResult] = useState(false);
   const [showEditBox, setshowEditBox] = useState(false);
   const [show, setshow] = useState(true);
-  let headings = [];
-  let paragraphs = [];
-  const quick_links = [
-    ["pencil", "Revise my writing and fix my grammar"],
-    ["lightbulb", "Help me sound like an expert for an upcoming trip"],
-    ["utensils", "Find hotels for a New Year’s trip to San Francisco"],
-    ["lightbulb", "Explain the key rules of rugby, starting with the basics"],
-  ];
+  const [copied, setcopied] = useState(false);
 
   const formatResponse = (res) => {
     if (res.startsWith("##")) {
@@ -41,6 +34,23 @@ const ContextProvider = (props) => {
     formattedText = formattedText.replace(/(\. )(.*?)\?/g, ".<br/>$2?");
     return formattedText;
     // return res;
+  };
+
+  let timeoutId;
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setcopied(true);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        setcopied(false);
+        timeoutId = null;
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onSent = async (prompt) => {
@@ -71,11 +81,12 @@ const ContextProvider = (props) => {
     setshow,
     showEditBox,
     setshowEditBox,
-    headings,
-    paragraphs,
+    copied,
+    setcopied,
 
     //functions
     onSent,
+    copyToClipboard,
   };
   return (
     <GlobalContext.Provider value={contextValue}>
