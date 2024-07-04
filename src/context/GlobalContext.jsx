@@ -9,6 +9,7 @@ const ContextProvider = (props) => {
   const [prevPrompts, setprevPrompts] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const [responseData, setresponseData] = useState("");
+  const [sanitizedData, setSanitizedData] = useState("");
   const [showResult, setshowResult] = useState(false);
   const [showEditBox, setshowEditBox] = useState(false);
   const [show, setshow] = useState(true);
@@ -36,8 +37,8 @@ const ContextProvider = (props) => {
     formattedText = formattedText.replace(/\?/g, "?<br/>");
 
     // Add a line break before the text appearing before a colon or question mark up to the previous full stop
-    formattedText = formattedText.replace(/(\. )(.*?):/g, ".<br/>$4:");
-    formattedText = formattedText.replace(/(\. )(.*?)\?/g, ".<br/>$4?");
+    formattedText = formattedText.replace(/(\. )(.*?):/g, ".<br/>$2:");
+    formattedText = formattedText.replace(/(\. )(.*?)\?/g, ".<br/>$2?");
     return formattedText;
     // return res;
   };
@@ -50,6 +51,7 @@ const ContextProvider = (props) => {
     const response = await runChat(prompt);
     const formattedText = formatResponse(response);
     setresponseData(formattedText);
+
     setisLoading(false);
   };
   const contextValue = {

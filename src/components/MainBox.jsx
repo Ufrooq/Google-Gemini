@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import Loader from "./Loader";
+import { ReactTyped } from "react-typed";
 
 const MainBox = () => {
   const {
@@ -115,10 +116,7 @@ const MainBox = () => {
               />
               {!isLoading ? (
                 <div className="p-4 bg-slate-100 rounded-[10px] w-full">
-                  <p
-                    className="text-justify leading-7"
-                    dangerouslySetInnerHTML={{ __html: responseData }}
-                  ></p>
+                  <ReactTyped strings={[responseData]} typeSpeed={10} />
                 </div>
               ) : (
                 <Loader />
