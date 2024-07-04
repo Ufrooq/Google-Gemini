@@ -48,8 +48,8 @@ const ContextProvider = (props) => {
     setshowResult(true);
     setprompt("");
     const response = await runChat(prompt);
-    const forText = formatResponse(response);
-    setresponseData(forText);
+    const formattedText = formatResponse(response);
+    setresponseData(formattedText);
     setisLoading(false);
   };
   const contextValue = {
