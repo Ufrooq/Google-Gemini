@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import Loader from "./Loader";
 import { ReactTyped } from "react-typed";
 
 const MainBox = () => {
+  const [show, setshow] = useState(true);
   const {
-    show,
-    setshow,
     showResult,
     quick_links,
     showEditBox,

@@ -12,7 +12,6 @@ const ContextProvider = (props) => {
   const [responseData, setresponseData] = useState("");
   const [showResult, setshowResult] = useState(false);
   const [showEditBox, setshowEditBox] = useState(false);
-  const [show, setshow] = useState(true);
   const [copied, setcopied] = useState(false);
 
   const formatResponse = (res) => {
@@ -54,6 +53,7 @@ const ContextProvider = (props) => {
   };
 
   const onSent = async (prompt) => {
+    setprevPrompts([...prevPrompts, prompt]);
     setrecentPrompt(prompt);
     setisLoading(true);
     setshowResult(true);
@@ -77,8 +77,6 @@ const ContextProvider = (props) => {
     responseData,
     showResult,
     quick_links,
-    show,
-    setshow,
     showEditBox,
     setshowEditBox,
     copied,

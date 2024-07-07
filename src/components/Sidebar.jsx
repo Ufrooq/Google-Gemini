@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 let _limit = 5;
 const Sidebar = () => {
+  const { prevPrompts } = useContext(GlobalContext);
   const [expanded, setexpanded] = useState(false);
   const [showmore, setshowmore] = useState(false);
   const words = [
@@ -65,17 +67,17 @@ const Sidebar = () => {
               showmore ? "overflow-y-scroll" : "overflow-hidden"
             }`}
           >
-            {words?.slice(0, _limit).map((word, key) => (
+            {prevPrompts?.slice(0, _limit).map((prompt, key) => (
               <li
                 key={key}
-                className="w-full flex items-center gap-4 px-4 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100"
+                className="text-sm whitespace-nowrap overflow-hidden overflow-ellipsis w-full flex items-center gap-4 px-4 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100"
               >
                 <i
                   // class="fa-regular fa-message"
                   class="fa-regular fa-note-sticky"
                   style={{ fontSize: "1rem" }}
                 ></i>
-                {word}
+                {prompt.slice(0, 20)}...
               </li>
             ))}
           </ul>
