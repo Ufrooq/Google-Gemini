@@ -20,15 +20,16 @@ const MainBox = () => {
     copyToClipboard,
     showOutputControls,
     setshowOutputControls,
+    onSent,
   } = useContext(GlobalContext);
 
   const handleUpdate = () => {
     setshowEditBox(true);
   };
 
-  // useEffect(() => {
-  //   setshowOutputControls(false);
-  // }, []);
+  const handleSendPrompt = async (prompt) => {
+    await onSent(prompt);
+  };
 
   return (
     <div className="p-5 w-full max-h-[90vh] relative overflow-y-scroll">
@@ -46,6 +47,7 @@ const MainBox = () => {
             <div className="w-full gap-3 flex mt-20">
               {quick_links.map((link, key) => (
                 <div
+                  onClick={() => handleSendPrompt(link[1])}
                   key={key}
                   className="w-full flex h-[200px] flex-col justify-between flex-grow-1 cursor-pointer rounded-[10px] p-5 bg-slate-100 hover:bg-slate-200 transition shadow-sm"
                 >

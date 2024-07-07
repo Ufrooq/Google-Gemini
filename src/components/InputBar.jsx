@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { toast } from "sonner";
 
 const InputBar = () => {
   const { onSent, prompt, setprompt, showOutputControls } =
@@ -7,7 +8,11 @@ const InputBar = () => {
 
   const handleSendPrompt = async (e) => {
     e.preventDefault();
-    await onSent(prompt);
+    if (prompt != " ") {
+      await onSent(prompt);
+      return;
+    }
+    toast.error("Please Enter a prompt");
   };
 
   return (
