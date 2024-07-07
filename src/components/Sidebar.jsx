@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 
 let _limit = 5;
 const Sidebar = () => {
-  const { prevPrompts, onSent } = useContext(GlobalContext);
+  const { prevPrompts, onSent, newChat } = useContext(GlobalContext);
   const [expanded, setexpanded] = useState(false);
   const [showmore, setshowmore] = useState(false);
 
@@ -30,6 +30,7 @@ const Sidebar = () => {
           <i className="fa-solid fa-bars" style={{ fontSize: "1.3rem" }}></i>
         </button>
         <button
+          onClick={newChat}
           className={`${
             expanded
               ? "icon_btn  gap-2 px-4 flex justify-between w-36 rounded-[20px] bg-slate-200"

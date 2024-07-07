@@ -53,6 +53,12 @@ const ContextProvider = (props) => {
     }
   };
 
+  const newChat = () => {
+    setprompt("");
+    setisLoading(false);
+    setshowResult(false);
+  };
+
   const onSent = async (prompt) => {
     setshowOutputControls(true);
     setprevPrompts([...prevPrompts, prompt]);
@@ -89,6 +95,7 @@ const ContextProvider = (props) => {
     //functions
     onSent,
     copyToClipboard,
+    newChat,
   };
   return (
     <GlobalContext.Provider value={contextValue}>
