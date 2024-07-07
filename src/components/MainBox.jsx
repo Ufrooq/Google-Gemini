@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import Loader from "./Loader";
 import { ReactTyped } from "react-typed";
 
 const MainBox = () => {
-  const [show, setshow] = useState(true);
+  const [showDialogue, setshowDialogue] = useState(true);
+
   const {
     showResult,
     quick_links,
@@ -17,11 +18,18 @@ const MainBox = () => {
     copied,
     setcopied,
     copyToClipboard,
+    showOutputControls,
+    setshowOutputControls,
   } = useContext(GlobalContext);
 
   const handleUpdate = () => {
     setshowEditBox(true);
   };
+
+  // useEffect(() => {
+  //   setshowOutputControls(false);
+  // }, []);
+
   return (
     <div className="p-5 w-full max-h-[90vh] relative overflow-y-scroll">
       <div className="w-[60%] h-full mx-auto">
@@ -48,7 +56,7 @@ const MainBox = () => {
                 </div>
               ))}
             </div>
-            {show && (
+            {showDialogue && (
               <div className="mt-8 mb-32 flex flex-col rounded-[10px] p-4 justify-between gap-10 bg-gray-100">
                 <p className="text-[0.9rem] leading-6">
                   Humans review some saved chats to improve Google AI. To stop
@@ -61,7 +69,7 @@ const MainBox = () => {
                     Manage Activity
                   </button>
                   <button
-                    onClick={() => setshow(false)}
+                    onClick={() => setshowDialogue(false)}
                     className="px-4 py-2 rounded-[20px] text-indigo-500 hover:bg-blue-100 transition"
                   >
                     Dismiss
@@ -112,25 +120,33 @@ const MainBox = () => {
             </div>
             <div className="w-full items-start gap-4 flex mt-10 mb-32">
               <img
-                className="scale-125"
+                className={`w-[40px] ${
+                  showOutputControls ? "animate-spin" : ""
+                }`}
                 src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg"
                 alt=""
               />
               {!isLoading ? (
                 <div className="p-4 bg-slate-100 rounded-[10px] w-full flex flex-col">
                   <p className="text-justify leading-7">
-                    <ReactTyped strings={[responseData]} typeSpeed={10} />
+                    <ReactTyped
+                      strings={[responseData]}
+                      typeSpeed={5}
+                      onComplete={() => setshowOutputControls(false)}
+                    />
                   </p>
-                  <button
-                    className="mt-4 ml-auto mr-2"
-                    onClick={() => copyToClipboard(responseData)}
-                  >
-                    {copied ? (
-                      <i class="fa-solid fa-check text-xl"></i>
-                    ) : (
-                      <i class="fa-solid fa-copy text-xl"></i>
-                    )}
-                  </button>
+                  {!showOutputControls && (
+                    <button
+                      className="mt-4 ml-auto mr-2"
+                      onClick={() => copyToClipboard(responseData)}
+                    >
+                      {copied ? (
+                        <i class="fa-solid fa-check text-xl"></i>
+                      ) : (
+                        <i class="fa-solid fa-copy text-xl"></i>
+                      )}
+                    </button>
+                  )}
                 </div>
               ) : (
                 <Loader />

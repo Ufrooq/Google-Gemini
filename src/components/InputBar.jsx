@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 const InputBar = () => {
-  const { onSent, prompt, setprompt } = useContext(GlobalContext);
+  const { onSent, prompt, setprompt, showOutputControls } =
+    useContext(GlobalContext);
 
   const handleSendPrompt = async (e) => {
     e.preventDefault();
@@ -17,11 +18,12 @@ const InputBar = () => {
           className="flex justify-between px-6 py-3 shadow-2xl rounded-[50px] bg-slate-100 overflow-hidden"
         >
           <input
-            className="w-full text-base bg-transparent outline-none"
+            className="w-full text-base bg-transparent outline-none  disabled:cursor-not-allowed"
             type="text"
             placeholder="Enter a prompt here"
             value={prompt}
             onChange={(e) => setprompt(e.target.value)}
+            disabled={showOutputControls}
           />
           <div className="flex gap-1 items-center">
             <button className="input_btn">

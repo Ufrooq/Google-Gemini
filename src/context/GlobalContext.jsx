@@ -13,6 +13,7 @@ const ContextProvider = (props) => {
   const [showResult, setshowResult] = useState(false);
   const [showEditBox, setshowEditBox] = useState(false);
   const [copied, setcopied] = useState(false);
+  const [showOutputControls, setshowOutputControls] = useState(false);
 
   const formatResponse = (res) => {
     if (res.startsWith("##")) {
@@ -46,13 +47,14 @@ const ContextProvider = (props) => {
       timeoutId = setTimeout(() => {
         setcopied(false);
         timeoutId = null;
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.log(error);
     }
   };
 
   const onSent = async (prompt) => {
+    setshowOutputControls(true);
     setprevPrompts([...prevPrompts, prompt]);
     setrecentPrompt(prompt);
     setisLoading(true);
@@ -81,6 +83,8 @@ const ContextProvider = (props) => {
     setshowEditBox,
     copied,
     setcopied,
+    showOutputControls,
+    setshowOutputControls,
 
     //functions
     onSent,

@@ -3,31 +3,12 @@ import { GlobalContext } from "../context/GlobalContext";
 
 let _limit = 5;
 const Sidebar = () => {
-  const { prevPrompts } = useContext(GlobalContext);
+  const { prevPrompts, onSent } = useContext(GlobalContext);
   const [expanded, setexpanded] = useState(false);
   const [showmore, setshowmore] = useState(false);
-  const words = [
-    "happy",
-    "sad",
-    "angry",
-    "tired",
-    "hungry",
-    "book",
-    "computer",
-    "phone",
-    "music",
-    "movie",
-    "movie",
-    "movie",
-    "movie",
-    "movie",
-    "movie",
-    "movie",
-    "movie",
-  ];
 
   const handleDropdown = () => {
-    _limit = words.length;
+    _limit = prevPrompts.length;
     setshowmore(!showmore);
   };
 
@@ -69,6 +50,7 @@ const Sidebar = () => {
           >
             {prevPrompts?.slice(0, _limit).map((prompt, key) => (
               <li
+                onClick={() => onSent(prompt)}
                 key={key}
                 className="text-sm whitespace-nowrap overflow-hidden overflow-ellipsis w-full flex items-center gap-4 px-4 py-2 rounded-[20px] cursor-pointer hover:bg-blue-100"
               >
