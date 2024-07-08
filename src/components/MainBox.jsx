@@ -115,7 +115,10 @@ const MainBox = () => {
               )}
               <button
                 onClick={() => setshowEditBox(!showEditBox)}
-                className="w-9 h-8 mt-1 rounded-[50%] flex justify-center items-center bg-slate-200"
+                disabled={showOutputControls}
+                className={`${
+                  showOutputControls ? "cursor-not-allowed" : "cursor-pointer"
+                } w-9 h-8 mt-1 rounded-[50%] flex justify-center items-center bg-slate-200`}
               >
                 <i class="fa-regular fa-pen-to-square text-sm"></i>
               </button>
