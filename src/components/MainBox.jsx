@@ -38,7 +38,7 @@ const MainBox = () => {
           <>
             <h1 className="font-semibold text-6xl pt-10">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-pink-500">
-                Hello, Umar!
+                Hello !
               </span>
             </h1>
             <h1 className="mt-4 font-semibold text-6xl text-gray-300">
