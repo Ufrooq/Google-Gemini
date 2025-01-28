@@ -5,7 +5,6 @@ import { ReactTyped } from "react-typed";
 
 const MainBox = () => {
   const [showDialogue, setshowDialogue] = useState(true);
-
   const {
     showResult,
     quick_links,
@@ -22,13 +21,20 @@ const MainBox = () => {
     setshowOutputControls,
     onSent,
   } = useContext(GlobalContext);
+  const [updatedPrompt, setupdatedPrompt] = useState("");
 
-  const handleUpdate = () => {
-    setshowEditBox(true);
+  const handleUpdate = async () => {
+    setshowEditBox(false);
+    await onSent(updatedPrompt);
   };
 
   const handleSendPrompt = async (prompt) => {
     await onSent(prompt);
+  };
+
+  const handleShowEditBox = () => {
+    setupdatedPrompt(recentPrompt);
+    setshowEditBox(!showEditBox);
   };
 
   return (
@@ -95,7 +101,8 @@ const MainBox = () => {
                     type="text"
                     name=""
                     id=""
-                    value={"What is DSA?"}
+                    value={updatedPrompt}
+                    onChange={(e) => setupdatedPrompt(e.target.value)}
                   />
                   <div className="flex items-center gap-2">
                     <button
@@ -105,7 +112,7 @@ const MainBox = () => {
                       Cancel
                     </button>
                     <button
-                      onClick={() => setshowEditBox(false)}
+                      onClick={handleUpdate}
                       className="px-4 py-2 rounded-[20px] text-white bg-blue-500 hover:opacity-90 transition"
                     >
                       Update
@@ -114,7 +121,7 @@ const MainBox = () => {
                 </div>
               )}
               <button
-                onClick={() => setshowEditBox(!showEditBox)}
+                onClick={handleShowEditBox}
                 disabled={showOutputControls}
                 className={`${
                   showOutputControls ? "cursor-not-allowed" : "cursor-pointer"
